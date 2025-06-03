@@ -1,0 +1,65 @@
+.image-section img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-top: 16px;
+}
+.instruction, .instruction-text {
+  font-size: 18px;
+  color: #000000;
+  margin: 24px 0;
+}
+.status-text {
+  font-size: 32px;
+  color: #F08000;
+  font-weight: 700;
+  margin: 40px 0;
+}
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 40px 16px 64px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.primary, .button, .retry-button, .measure-button {
+  background-color: #F08000;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 160px;
+}
+.primary:hover,
+.button:hover,
+.retry-button:hover,
+.measure-button:hover {
+  opacity: 0.9;
+}
+.check-icon {
+  width: 160px;
+  height: 160px;
+}
+.measuring-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #F08000;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 30px;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
