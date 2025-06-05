@@ -6,7 +6,7 @@ export default function PairingGuide() {
 
   const startPairing = async () => {
     try {
-      await fetch('https://your-api.com/set_start', {
+      await fetch('https://ad1961c3b2a1.ngrok.app/set_start', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: '001', status: '1' }),
