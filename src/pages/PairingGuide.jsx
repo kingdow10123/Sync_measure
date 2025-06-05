@@ -4,16 +4,17 @@ import './Common.css';
 export default function PairingGuide() {
   const navigate = useNavigate();
 
-  const startPairing = async () => {
+  const checkIfReady = async () => {
     try {
-      await fetch('https://ad1961c3b2a1.ngrok.app/set_start', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: '001', status: '1' }),
-      });
-      navigate('/pairing-status');
+      const res = await fetch('https://your-api.com/get_state?userId=001');
+      const data = await res.json();
+      if (data.state === 1) {
+        navigate('/pairing-status');
+      } else {
+        alert('尚未就緒，請稍後再試');
+      }
     } catch (err) {
-      navigate('/pairing-error');
+      alert('連線失敗，請稍後再試');
     }
   };
 
@@ -23,7 +24,7 @@ export default function PairingGuide() {
         <img src="https://i.postimg.cc/T11S3P5H/1234.png" alt="裝置圖片" />
       </div>
       <div className="instruction">按下電源進入配對</div>
-      <button className="button" onClick={startPairing}>NEXT→</button>
+      <button className="button" onClick={checkIfReady}>NEXT→</button>
     </div>
   );
 }
