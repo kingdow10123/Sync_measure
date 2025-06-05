@@ -6,10 +6,13 @@ export default function PairingStatus() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let retryCount = 0;
+    const MAX_RETRY = 10;
+
     const startPairing = async () => {
       try {
         // 發送配對啟動請求
-        await fetch(' https://ad1961c3b2a1.ngrok.app/set_start', {
+        await fetch('https://your-api.com/set_start', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ userId: '001', status: '1' }),
@@ -19,7 +22,7 @@ export default function PairingStatus() {
         return;
       }
 
-      // 開始輪詢 get_state
+      // 開始輪詢 get_state 狀態
       const interval = setInterval(async () => {
         try {
           const res = await fetch('https://your-api.com/get_state', {
@@ -28,20 +31,28 @@ export default function PairingStatus() {
             body: JSON.stringify({ userId: '001' }),
           });
           const data = await res.json();
-          if (data.state === 1) {
+
+          if (data && data.state === 1) {
             clearInterval(interval);
             navigate('/leg-instruction');
+          } else {
+            retryCount++;
+            if (retryCount > MAX_RETRY) {
+              clearInterval(interval);
+              navigate('/pairing-error');
+            }
           }
-        } catch {
+        } catch (e) {
           clearInterval(interval);
           navigate('/pairing-error');
         }
       }, 2000);
-
-      return () => clearInterval(interval);
     };
 
     startPairing();
+
+    // 清除副作用
+    return () => clearInterval();
   }, [navigate]);
 
   return (
