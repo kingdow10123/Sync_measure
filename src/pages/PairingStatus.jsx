@@ -12,7 +12,7 @@ export default function PairingStatus() {
     const startPairing = async () => {
       try {
         // 發送配對啟動請求
-        await fetch('https://ba7e3125be99.ngrok.app//set_start', {
+        await fetch('https://ba7e3125be99.ngrok.app/set_start', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ userId: '001', status: '1' }),
@@ -25,7 +25,7 @@ export default function PairingStatus() {
       // 開始輪詢 get_state 狀態
       const interval = setInterval(async () => {
         try {
-          const res = await fetch(' https://2bd49b10053e.ngrok.app/get_state', {
+          const res = await fetch('https://ba7e3125be99.ngrok.app/get_state', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ userId: '001' }),
