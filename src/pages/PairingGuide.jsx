@@ -6,7 +6,7 @@ export default function PairingGuide() {
 
   const checkIfReady = async () => {
     try {
-      const res = await fetch('https://ba7e3125be99.ngrok.app/get_state', {
+      const res = await fetch('https://7dad-211-72-73-210.ngrok-free.app/get_state', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: '001' }),
