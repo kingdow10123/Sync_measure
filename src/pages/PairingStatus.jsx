@@ -8,7 +8,7 @@ export default function PairingStatus() {
   useEffect(() => {
     const interval = setInterval(async () => {
       try {
-        const res = await fetch('https://your-api.com/get_state?userId=001');
+        const res = await fetch('https://ad1961c3b2a1.ngrok.app/get_state?userId=001');
         const data = await res.json();
         if (data.state === 1) {
           clearInterval(interval);
