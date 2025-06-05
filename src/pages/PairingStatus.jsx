@@ -6,9 +6,9 @@ export default function PairingStatus() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 一開始先送出 set_start
     const startPairing = async () => {
       try {
+        // 發送配對啟動請求
         await fetch('https://your-api.com/set_start', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -19,10 +19,14 @@ export default function PairingStatus() {
         return;
       }
 
-      // 然後開始輪詢 get_state
+      // 開始輪詢 get_state
       const interval = setInterval(async () => {
         try {
-          const res = await fetch('https://your-api.com/get_state?userId=001');
+          const res = await fetch('https://your-api.com/get_state', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId: '001' }),
+          });
           const data = await res.json();
           if (data.state === 1) {
             clearInterval(interval);
