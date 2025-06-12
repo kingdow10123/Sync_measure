@@ -12,7 +12,7 @@ export default function PairingStatus() {
     const startPairing = async () => {
       try {
         // 發送配對啟動請求
-        await fetch('https://6f22-61-218-122-234.ngrok-free.app/get_start', {
+        await fetch('https://6f22-61-218-122-234.ngrok-free.app/set_start', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ userId: '001', status: '1' }),
